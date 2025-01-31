@@ -67,31 +67,32 @@ class PublicationRenderer {
                     textarea.select();
                     document.execCommand('copy');
                     document.body.removeChild(textarea);
-                    container.classList.add('copied');
-                    setTimeout(() => container.classList.remove('copied'), 1000);
 
-                    let notification = document.querySelector('.copy-notification');
-                    if (!notification) {
-                        notification = document.createElement('div');
-                        notification.className = 'copy-notification';
-                        notification.textContent = 'Copied!';
-                        document.body.appendChild(notification);
-                    }
+                    // let notification = document.querySelector('.copy-notification');
+                    // if (!notification) {
+                    //     notification = document.createElement('div');
+                    //     notification.className = 'copy-notification';
+                    //     notification.textContent = 'Copied!';
+                    //     document.body.appendChild(notification);
+                    // }
 
-                    notification.style.display = 'block';
-                    notification.style.animation = 'slideIn 0.3s ease-out';
+                    // notification.style.display = 'block';
+                    // notification.style.animation = 'slideIn 0.3s ease-out';
 
                     // Add copied class to item
-                    container.classList.add('copied');
+                    // container.classList.add('copied');
 
-                    setTimeout(() => {
-                        container.classList.remove('copied');
-                        notification.style.animation = 'slideOut 0.3s ease-out';
-                        setTimeout(() => {
-                            notification.style.display = 'none';
-                        }, 300);
-                    }, 1500);
+                    // setTimeout(() => {
+                    //     container.classList.remove('copied');
+                    //     notification.style.animation = 'slideOut 0.3s ease-out';
+                    //     setTimeout(() => {
+                    //         notification.style.display = 'none';
+                    //     }, 300);
+                    // }, 1500);
                 }
+                container.classList.add('copied');
+                setTimeout(() => container.classList.remove('copied'), 1000);
+
             } catch (err) {
                 console.error('Failed to copy citation:', err);
                 // Fallback to showing citation in alert
@@ -162,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dark mode toggle functionality
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     // Check localStorage for theme preference
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'dark') {
@@ -182,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 document.body.classList.remove('theme-transition');
             }, 600);
-            
+
             const isDark = document.body.classList.toggle('dark-theme');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
