@@ -151,7 +151,7 @@ class PublicationRenderer {
             return yearB - yearA;
         });
 
-        filteredEntries.forEach(entry => {
+        filteredEntries.filter(entry => entry.fields.selected === 'true').forEach(entry => {
             container.appendChild(this.renderPublication(entry));
         });
     }
