@@ -158,6 +158,33 @@ class PublicationRenderer {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Track visitor information
+    fetch('https://ipinfo.io/json')
+        .then(response => response.json())
+        .then(data => {
+            formData = new FormData();
+            formData.append('ip', data.ip);
+            formData.append('ua', navigator.userAgent);
+            formData.append('city', data.city);
+            formData.append('region', data.region);
+            formData.append('loc', data.loc);
+
+            fetch('http://api.yangxingrui.com:5000/track', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => displayVisitorStats(data))
+                .catch(error => console.error('Error tracking visitor:', error));
+        });
+
+    function displayVisitorStats(data) {
+        const visitorCounter = document.getElementById('visitor-counter');
+        if (visitorCounter && data.total_visitors !== undefined) {
+            visitorCounter.innerHTML = ('0000000' + data.total_visitors).slice(-6);
+        }
+    }
+
     const renderer = new PublicationRenderer();
     renderer.renderPublications('publications-container', 'pub.bib');
 
