@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('region', data.region);
             formData.append('loc', data.loc);
 
-            fetch('http://api.yangxingrui.com:5000/track', {
+            fetch('https://api.yangxingrui.com/track', {
                 method: 'POST',
                 body: formData,
             })
