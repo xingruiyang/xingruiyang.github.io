@@ -148,7 +148,6 @@ body.dark-theme {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     background-color: antiquewhite;
 }
-
 footer {
     margin-top: 4rem;
     padding: 2rem 0;
@@ -277,27 +276,40 @@ a {
     border-radius: 8px;
 }
 
+.news-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 6rem;
+    /* Increased gap by 3x */
+    align-items: center;
+}
+
+@media (max-width: 1023px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
 .news-date {
-    height: 25px;
-    white-space: nowrap;
-    font-weight: 800;
-    color: #e74c3c;
-    margin-right: 1.5rem;
-    padding: 0.3rem 1rem;
-    border: 2px solid #e74c3c;
-    border-radius: 20px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.8rem;
-    transition: all 0.3s ease;
+    font-weight: 800;
+    color: #e74c3c;
 }
 
-.news-date::before {
-    content: "🗓";
-    font-size: 0.9em;
-    opacity: 0.8;
+.news-date i {
+    font-size: 1.2rem;
 }
 
+.news-content {
+    line-height: 1.6;
+    max-width: 70%;
+    margin: auto;
+    text-wrap: initial;
+    font-family: 'Courier New', Courier, monospace;
+}
 
 .dark-theme .news-date {
     color: #ff6b6b;
@@ -332,8 +344,7 @@ a {
     text-decoration: none;
     color: #2c3e50;
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
 }
 
@@ -358,30 +369,26 @@ a {
 }
 
 .more-link {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-left: 1rem;
-    text-decoration: none; /* Remove underline */
-    color: #e74c3c;
-    border: 1px solid #e74c3c;
-    padding: 0.2rem 0.5rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    text-decoration: none;
+    color: #2c3e50;
+    padding-bottom: 0.5rem;
+    transition: opacity 0.3s ease;
+    opacity: 0.8;
 }
 
 .more-link:hover {
-    background-color: #e74c3c;
-    color: #fff;
+    opacity: 1;
 }
 
 .dark-theme .more-link {
-    color: #ff6b6b;
-    border-color: #ff6b6b;
+    color: #f5f5f5;
 }
 
 .dark-theme .more-link:hover {
-    background-color: #ff6b6b;
-    color: #fff;
+    opacity: 1;
 }
 
 /* Responsive Design */
@@ -472,6 +479,10 @@ a {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
     }
+    
+    .news-content {
+        max-width: 90%;
+    }
 }
 
 
@@ -541,6 +552,11 @@ a {
 
     .news-list li {
         padding: 0;
+    }
+
+    .news-content {
+        max-width: 100%;
+        text-align: left;
     }
 }
 
